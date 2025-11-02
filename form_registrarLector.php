@@ -2,8 +2,8 @@
 <?php
  $conexion = new mysqli("localhost", "root", "", "biblioteca");
 if(isset($_POST["registrar"])){
-    $nombre = ($_POST["nombre"]);
-    $dni = ($_POST["dni"]);
+    $nombre = $conexion->real_escape_string($_POST["nombre"]);
+    $dni = $conexion->real_escape_string($_POST["dni"]);
     $estado = "activo";
     $n_prestados =0;
 
@@ -24,7 +24,7 @@ if(isset($_POST["registrar"])){
     }
 }
 
-?>
+$conexion->close();?>
 <!--Formulario registro lectores-->
 <form action="" method="post">
     <h2>Registrar lector</h2>
