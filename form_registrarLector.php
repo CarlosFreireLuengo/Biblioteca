@@ -1,6 +1,10 @@
-
 <?php
  $conexion = new mysqli("localhost", "root", "", "biblioteca");
+
+  if ($connexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+
 if(isset($_POST["registrar"])){
     $nombre = $conexion->real_escape_string($_POST["nombre"]);
     $dni = $conexion->real_escape_string($_POST["dni"]);
@@ -25,19 +29,29 @@ if(isset($_POST["registrar"])){
 }
 
 $conexion->close();?>
-<!--Formulario registro lectores-->
-<form action="" method="post">
-    <h2>Registrar lector</h2>
-     <?php 
-    if (isset($mensaje)) {
-        echo "<p><strong>$mensaje</strong></p>";
-    }
-    ?>
-    <label for="nombre">Nombre y apellidos:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-    <label for="dni">DNI:</label>
-    <input type="text" id="dni" name="dni" required><br><br>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registar lector</title>
+    </head>
+    <body>
+        <!--Formulario registro lectores-->
+        <form action="" method="post">
+            <h2>Registrar lector</h2>
+            <?php 
+            if (isset($mensaje)) {
+                echo "<p><strong>$mensaje</strong></p>";
+            }
+            ?>
+            <label for="nombre">Nombre y apellidos:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required><br><br>
 
-    <button type="submit" name="registrar">Registrar usuario</button>
+            <button type="submit" name="registrar">Registrar usuario</button>
 
-</form>
+        </form>
+    </body>
+</html>

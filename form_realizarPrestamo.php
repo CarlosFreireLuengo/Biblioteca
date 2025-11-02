@@ -1,5 +1,8 @@
 <?php
 $conexion = new mysqli("localhost", "root", "", "biblioteca");
+ if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -15,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($lector['estado'] != 'activo') {
         $mensaje = "Error: El lector está dado de baja y no puede realizar préstamos.";
     } else {
+        //Hacer comprobación de que haya ejemplares de ese libro disponibles para prestar
         // Registrar el préstamo (solo lo que indica el enunciado)
         $conexion->query("INSERT INTO prestamos (id_lector, id_libro)
                           VALUES ($id_lector, $id_libro)");
