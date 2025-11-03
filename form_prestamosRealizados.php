@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $resultado = null;
 $mensaje = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['consultar'])) {
     $dni = trim($_POST["dni"]);
 
     if (!empty($dni)) {
@@ -62,11 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Consulta de Préstamos</title>
 </head>
 <body>
-    <h1>Consultar Préstamos de un Lector</h1>
+    <h2>Consultar Préstamos de un Lector</h2>
     <form method="POST" action="">
         <label for="dni">Introduce el DNI del lector:</label><br>
         <input type="text" name="dni" id="dni" placeholder="Ej: 12345678A" required>
-        <input type="submit" value="Consultar">
+        <input type="submit" name="consultar" value="Consultar">
     </form>
     <hr>
 
@@ -89,5 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php elseif (!empty($mensaje)): ?>
         <p><?= htmlspecialchars($mensaje) ?></p>
     <?php endif; ?>
+
+    <br>
+    <a href="index.php">Volver al menú</a>
 </body>
 </html>
