@@ -29,6 +29,7 @@ if(isset($_POST['dar_baja'])){
 }
 //Obtenemos la lista de lectores
 $lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHERE estado ='activo'");
+$conexion->close();
 ?>
 
 <!DOCTYPE html>
@@ -58,5 +59,7 @@ $lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHER
             <button type="submit" name="dar_baja">Dar de baja</button>
 
         </form>
+    <br>
+    <a href="index.php">Volver al menú</a>
 </body>
 </html>

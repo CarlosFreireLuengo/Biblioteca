@@ -38,8 +38,8 @@ $sql = "
 
     -- Insertar datos iniciales en la tabla libros
     INSERT INTO libros (titulo, autor, anio_publicacion, ISBN, sinopsis, n_disponibles, n_totales) VALUES
-    ('Cien Años de Soledad', 'Gabriel García Márquez', 1967, '1234567890123', 'Novela que narra la historia de la familia Buendía en el pueblo ficticio de Macondo.', 5, 4),
-    ('Don Quijote de la Mancha', 'Miguel de Cervantes', 1605, '2345678901234', 'La aventura del ingenioso hidalgo Don Quijote y su fiel escudero Sancho Panza.', 3, 2);
+    ('Cien Años de Soledad', 'Gabriel García Márquez', 1967, '1234567890123', 'Novela que narra la historia de la familia Buendía en el pueblo ficticio de Macondo.', 4, 5),
+    ('Don Quijote de la Mancha', 'Miguel de Cervantes', 1605, '2345678901234', 'La aventura del ingenioso hidalgo Don Quijote y su fiel escudero Sancho Panza.', 2, 3);
 
     -- Insertar datos iniciales en la tabla lectores
     INSERT INTO lectores (lector_nombre, DNI, estado, n_prestados) VALUES   

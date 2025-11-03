@@ -1,7 +1,7 @@
 <?php
  $conexion = new mysqli("localhost", "root", "", "biblioteca");
 
-  if ($connexion->connect_error) {
+  if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
@@ -11,6 +11,7 @@ if(isset($_POST["registrar"])){
     $estado = "activo";
     $n_prestados =0;
 
+    //Comprobar si el lector ya está registrado
     $compdni = "SELECT * FROM lectores WHERE DNI = '$dni'";
     $resultado = $conexion->query($compdni);
 
@@ -28,7 +29,8 @@ if(isset($_POST["registrar"])){
     }
 }
 
-$conexion->close();?>
+$conexion->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,8 +52,10 @@ $conexion->close();?>
             <label for="dni">DNI:</label>
             <input type="text" id="dni" name="dni" required><br><br>
 
-            <button type="submit" name="registrar">Registrar usuario</button>
+            <button type="submit" name="registrar">Registrar lector</button>
 
         </form>
+    <br>
+    <a href="index.php">Volver al menú</a>
     </body>
 </html>

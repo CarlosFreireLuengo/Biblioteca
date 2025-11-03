@@ -74,5 +74,7 @@ $conexion->close();?>
             <button type="submit" name="addLibro">Añadir libro</button>
 
         </form>
+        <br>
+        <a href="index.php">Volver al menú</a>
     </body>
 </html>

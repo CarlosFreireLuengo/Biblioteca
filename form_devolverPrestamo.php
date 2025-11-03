@@ -5,7 +5,7 @@ if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['devolver'])) {
     $id_libro = ($_POST['id_libro']);
     $id_lector =($_POST['id_lector']);
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="id_libro">ID del libro:</label><br>
         <input type="number" name="id_libro" id="id_libro" required><br><br>
 
-        <button type="submit">Devolver préstamo</button>
+        <button type="submit" name="devolver">Devolver préstamo</button>
     </form>
 
     <?php
@@ -63,6 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>$mensaje</p>";
     }
     ?>
+
+    <br>
+    <a href="index.php">Volver al menú</a>
 </body>
 
 </html>
