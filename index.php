@@ -1,3 +1,4 @@
+<?php require_once('conecta.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 </head>
 <body>
     <h1>Gestión de la Biblioteca</h1>
+    <h2>Antonio Alonso Alonso y Carlos Freire Luengo</h2>
     <div id="container">
         
         <form action="form_registrarLector.php">

@@ -4,6 +4,12 @@ $conexion = new mysqli("localhost", "root", "", "biblioteca");
     die("Error de conexión: " . $conexion->connect_error);
 }
 
+//Obtener lectores activos
+$lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHERE estado = 'activo'");
+
+//Obtener libros disponibles
+$libros = $conexion->query("SELECT id, titulo FROM libros WHERE n_disponibles > 0");
+
 if (isset($_POST['prestamo'])) {
 
     $id_libro = $_POST['id_libro'];
@@ -21,6 +27,7 @@ if (isset($_POST['prestamo'])) {
         //Comprobación de que haya ejemplares de ese libro disponibles para prestar
          $sql_libro = $conexion->query("SELECT n_disponibles FROM libros WHERE id = $id_libro");
          $libro = $sql_libro->fetch_assoc();
+
          if(!$libro){
             $mensaje = "El libro no existe";
          }elseif($libro["n_disponibles"]<=0){
@@ -41,17 +48,7 @@ if (isset($_POST['prestamo'])) {
             $mensaje = "Préstamo realizado correctamente.";
 
          } 
-        // Registrar el préstamo (solo lo que indica el enunciado)
-        $conexion->query("INSERT INTO prestamos (id_lector, id_libro)
-                          VALUES ($id_lector, $id_libro)");
 
-        // Incrementar número de libros prestados del lector
-        $conexion->query("UPDATE lectores SET n_prestados = n_prestados + 1
-                          WHERE id_lector = $id_lector");
-
-        //Faltante: reducir en 1 el numero de ejemplares disponibles para prestar del libro prestado
-
-        $mensaje = "Préstamo realizado correctamente.";
     }
 }
 $conexion->close();
@@ -73,11 +70,23 @@ $conexion->close();
     ?>
 
     <form action="" method="POST">
-        <label>ID del Libro:</label>
-        <input type="number" name="id_libro" required><br><br>
+        <label for="id_lector">Selecciona el lector:</label>
+        <select name="id_lector" id="id_lector" required>
+            <option value="" disabled>--Selecciona--</option>
+            <?php foreach ($lectores as $lector): ?>
+                <option value="<?php echo $lector['id_lector']?>"><?php echo htmlspecialchars($lector['lector_nombre'])?></option>
+            <?php endforeach;?>
+        </select>
+        <br><br>
 
-        <label>ID del Lector:</label>
-        <input type="number" name="id_lector" required><br><br>
+        <label for="id_libro">Selecciona libro disponible:</label>
+        <select name="id_libro" id="id_ibro" required>
+            <option value="" disabled>--Selecciona--</option>
+            <?php foreach ($libros as $libro): ?>
+                <option value="<?php echo $libro['id']?>"><?php echo htmlspecialchars($libro['titulo'])?></option>
+            <?php endforeach;?>
+        </select>
+        <br><br>
 
         <button type="submit" name="prestamo">Prestar Libro</button>
     </form>
