@@ -1,9 +1,6 @@
 <?php
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "biblioteca");
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
+require_once('conecta.php');
 
 // Si se envía el formulario de baja
 if (isset($_POST['dar_baja'])) {
@@ -34,6 +31,7 @@ if (isset($_POST['dar_baja'])) {
 
 // Obtiene los lectores activos
 $lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHERE estado = 'activo'");
+
 $conexion->close();
 ?>
 

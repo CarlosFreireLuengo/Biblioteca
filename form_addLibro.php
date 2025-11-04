@@ -1,11 +1,5 @@
 <?php
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "biblioteca");
-
-// Verifica la conexión
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
+require_once('conecta.php');
 
 // Si se envía el formulario
 if (isset($_POST['addLibro'])) {

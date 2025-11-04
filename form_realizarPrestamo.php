@@ -1,8 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "root", "", "biblioteca");
- if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
+require_once('conecta.php');
 
 //Obtener lectores activos
 $lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHERE estado = 'activo'");

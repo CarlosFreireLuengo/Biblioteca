@@ -1,6 +1,9 @@
 <?php 
     //Antonio Alonso Alonso y Carlos Freire Luengo
-    require_once('conecta.php') 
+    require_once('conecta.php');
+
+    //Cierra la conexión tras crear o comprobar la BD
+    $conexion->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

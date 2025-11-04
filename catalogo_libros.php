@@ -1,9 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "root", "", "biblioteca");
-
-if($conexion->connect_error){
-    die("Error de conexion: " .$conexion->connect_error);
-}
+require_once('conecta.php');
 
 //Seleccionamos los libros que tengan ejemplares disponibles
 $sql= "SELECT * FROM libros WHERE n_disponibles > 0";

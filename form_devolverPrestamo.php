@@ -1,8 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "root", "", "biblioteca");
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
+require_once('conecta.php');
 
 //Obtener lectores activos
 $lectores = $conexion->query("SELECT id_lector, lector_nombre FROM lectores WHERE estado='activo'");
@@ -21,6 +18,7 @@ if($id_lector_seleccionado){
     
     $resultado = $conexion->query($sql);
 
+    //Almacenamos los libros del lector en el array de libros
     while($libro = $resultado->fetch_assoc()){
         $libros_prestados[]= $libro;
     }
@@ -80,8 +78,7 @@ $conexion->close();
             <button type="submit" name="cargar">Cargar préstamos</button>
         </form>
 
-    <!--Cuando se selecciona lector y se pulsa en cargar préstamos, se despliega el formulario siguiente: -->
-    <!-- Mostrar libros prestados del lector si hay lector seleccionado -->
+    <!-- Si el lector tiene préstamos, se muestra el formulario siguiente: -->
     <?php if ($id_lector_seleccionado && count($libros_prestados) > 0): ?>
         <form method="post" action="">
             <input type="hidden" name="id_lector" value="<?php echo $id_lector_seleccionado ?>">

@@ -1,9 +1,5 @@
 <?php
- $conexion = new mysqli("localhost", "root", "", "biblioteca");
-
-  if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
-}
+require_once('conecta.php');
 
 if(isset($_POST["registrar"])){
     $nombre = $conexion->real_escape_string($_POST["nombre"]);
