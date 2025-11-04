@@ -1,4 +1,7 @@
-<?php require_once('conecta.php') ?>
+<?php 
+    //Antonio Alonso Alonso y Carlos Freire Luengo
+    require_once('conecta.php') 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

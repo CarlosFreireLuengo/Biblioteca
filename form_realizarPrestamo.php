@@ -62,17 +62,10 @@ $conexion->close();
 </head>
 <body>
     <h2>Realizar Préstamo</h2>
-
-    <?php 
-    if (isset($mensaje)) {
-        echo "<p><strong>$mensaje</strong></p>";
-    }
-    ?>
-
     <form action="" method="POST">
         <label for="id_lector">Selecciona el lector:</label>
         <select name="id_lector" id="id_lector" required>
-            <option value="" disabled>--Selecciona--</option>
+            <option value="">--Selecciona--</option>
             <?php foreach ($lectores as $lector): ?>
                 <option value="<?php echo $lector['id_lector']?>"><?php echo htmlspecialchars($lector['lector_nombre'])?></option>
             <?php endforeach;?>
@@ -81,7 +74,7 @@ $conexion->close();
 
         <label for="id_libro">Selecciona libro disponible:</label>
         <select name="id_libro" id="id_ibro" required>
-            <option value="" disabled>--Selecciona--</option>
+            <option value="">--Selecciona--</option>
             <?php foreach ($libros as $libro): ?>
                 <option value="<?php echo $libro['id']?>"><?php echo htmlspecialchars($libro['titulo'])?></option>
             <?php endforeach;?>
@@ -91,6 +84,13 @@ $conexion->close();
         <button type="submit" name="prestamo">Prestar Libro</button>
     </form>
     <br>
+    
+    <?php 
+    if (isset($mensaje)) {
+        echo "<p><strong>$mensaje</strong></p>";
+    }
+    ?>
+    
     <a href="index.php">Volver al menú</a>
 </body>
 </html>

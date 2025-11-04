@@ -53,6 +53,7 @@ if (isset($_POST['consultar'])) {
         $mensaje = "Por favor, introduce un DNI válido.";
     }
 }
+$conn->close();
 ?>
 
 <!DOCTYPE html>

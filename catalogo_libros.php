@@ -8,6 +8,8 @@ if($conexion->connect_error){
 //Seleccionamos los libros que tengan ejemplares disponibles
 $sql= "SELECT * FROM libros WHERE n_disponibles > 0";
 $resultado = $conexion->query($sql);
+
+$conexion->close();
 ?>
 
 <!DOCTYPE html>
