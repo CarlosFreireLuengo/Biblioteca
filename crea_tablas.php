@@ -1,4 +1,5 @@
 <?php
+// Datos de conexión
 $sql_db = "CREATE DATABASE biblioteca";
 if ($conexion->query($sql_db) === TRUE) {
     $conexion->select_db('biblioteca');
@@ -54,7 +55,7 @@ $sql = "
     ";
 
 
-
+//Ejecuta las consultas con la función multi_query.
 if ($conexion->multi_query($sql)) {
     while ($conexion->next_result()) {;
     }
