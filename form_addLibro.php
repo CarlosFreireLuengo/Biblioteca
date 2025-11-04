@@ -27,7 +27,7 @@ if (isset($_POST['addLibro'])) {
         $mensaje = "El libro " . $fila['titulo'] . " ya está registrado en la biblioteca";
     } else {
         // Inserta el nuevo libro
-        $sql_addLibro = "INSERT INTO libros (titulo, autor, anio_publicacion, ISBN, sinopsis, n_disponbles, n_totales)
+        $sql_addLibro = "INSERT INTO libros (titulo, autor, anio_publicacion, ISBN, sinopsis, n_disponibles, n_totales)
                          VALUES ('$titulo', '$autor', '$publicacion', '$isbn', '$sinopsis', '$ndisponibles', '$nejemplares')";
         if ($conexion->query($sql_addLibro)) {
             $mensaje = "Libro añadido con éxito";
@@ -73,7 +73,7 @@ $conexion->close();
         <textarea id="sinopsis" name="sinopsis" rows="4" required></textarea><br><br>
 
         <label for="ntotales">Número de ejemplares:</label>
-        <input type="number" id="ntotales" name="ntotales" required><br><br>
+        <input type="number" id="ntotales" name="ntotales" required min="1"><br><br>
 
         <button type="submit" name="addLibro">Añadir libro</button>
     </form>
